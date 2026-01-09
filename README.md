@@ -1,2 +1,41 @@
-# Energy-Storage-Estimation-Tool
-This energy storage estimation tool can calculate the maximum arbitrage amount for energy storage in market applications. It can also determine the optimal arbitrage strategies for energy storage in specific use cases.
+PVES优化调度系统
+
+✨ 核心特性
+特性	描述	优势
+📊 多时段优化	15分钟/30分钟/1小时时间步长	精细化调度，提高收益
+🔀 双模式优化	单日优化 + 整体优化	适应不同运营需求
+🌞 光伏上网控制	可配置光伏是否允许上网	灵活应对政策变化
+🔋 策略验证	多种储能充放电策略对比	智能选择最优策略
+💰 经济性分析	详细收益构成分析	清晰展示投资回报
+📈 Excel接口	Excel输入输出，无需编程基础	用户友好，易于使用
+
+pves-optimization/
+├── 📄 README.md                    # 项目说明文档
+├── 📄 main.py                      # 主程序入口
+├── 📄 base_models.py              # 基础数据结构
+├── 📄 input_reader.py             # Excel数据读取模块
+├── 📄 optimizer.py                # 优化算法核心
+├── 📄 output_writer.py            # 结果输出模块
+├── 📄 strategy_validator.py       # 策略验证模块（可选）
+├── 📄 requirements.txt            # 依赖包列表
+├── 📊 测试.xlsx                   # 示例输入文件
+├── 📂 data/                       # 输出目录
+    ├── output_results.xlsx        # 优化结果
+    └── charts/                    # 可视化图表
+
+📋 输入格式说明
+Excel文件结构（共2个Sheet）
+Sheet1：系统参数
+参数名	参数值	参数名	参数值
+储能容量	1000	测试步长	15
+额定功率	500	优化类型	daily
+初始容量	50	最大需量	800
+优化结束容量	50	光伏是否上网	1
+最大SOC	90	策略选择	1
+最小SOC	10	...	...
+Sheet2：时间序列数据
+时间	光伏预测发电量	峰谷电价	充电桩预测负荷	服务费价格	光伏上网价格
+00:00	0.0	0.4	100	0.5	0.3
+00:15	0.0	0.4	100	0.5	0.3
+...	...	...	...	...	...
+23:45	0.0	0.4	100	0.5	0.3
